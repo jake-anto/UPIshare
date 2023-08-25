@@ -17,8 +17,9 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
+import Container from "@mui/material/Container";
 
-function generateQR(open_link=false) {
+function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
   let name = document.getElementById("name").value;
   let amount = document.getElementById("amount").value;
@@ -55,6 +56,7 @@ function generateQR(open_link=false) {
 function QRForm() {
   return (
     <div>
+      <Typography variant="h6">Required Fields</Typography>
       <TextField
         required
         id="upiId"
@@ -72,15 +74,22 @@ function QRForm() {
         className="form-element"
         onChange={(e) => generateQR()}
       />
+      <Typography variant="h6">Optional Fields</Typography>
       <TextField
-        label="Amount (optional)"
+        label="Amount"
         type="number"
         id="amount"
         onChange={(e) => generateQR()}
-        sx={{ m: 1, width: "25ch" }}
+        sx={{ m: 1, width: "210px" }}
         InputProps={{
           startAdornment: <InputAdornment position="start">₹</InputAdornment>,
         }}
+      />
+      <TextField
+        label="Note"
+        variant="outlined"
+        className="form-element"
+        onChange={(e) => generateQR()}
       />
     </div>
   );
@@ -88,7 +97,7 @@ function QRForm() {
 
 function QRCard() {
   return (
-    <Card sx={{ maxWidth: 275 }}>
+    <Card>
       <CardHeader
         avatar={
           <Avatar id="avatar" sx={{ bgcolor: red[500] }} alt="John Doe">
@@ -105,11 +114,13 @@ function QRCard() {
         subheader=""
         subheaderTypographyProps={{ id: "card-subheader" }}
       />
-      <div id="qr-div">
-        <Image id="qr" alt="QR Code" />
-      </div>
+      <Container>
+          <Image id="qr" alt="QR Code" />
+      </Container>
       <CardActions>
-        <Button size="small" onClick={() => generateQR(true)}>Pay now</Button>
+        <Button size="small" onClick={() => generateQR(true)}>
+          Pay now
+        </Button>
       </CardActions>
     </Card>
   );
@@ -142,7 +153,9 @@ export default function Home() {
           <QRForm />
         </Grid>
         <Grid xs={4}>
-          <QRCard />
+          <Container maxWidth="sm">
+            <QRCard />
+          </Container>
         </Grid>
       </Grid>
     </div>
