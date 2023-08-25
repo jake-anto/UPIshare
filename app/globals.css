@@ -10,6 +10,7 @@ body {
     margin: 8px;
 }
 
-.qr-div {
-    margin: 8px;
+#qr {
+    display: block;
+    margin: 0 auto;
 }
