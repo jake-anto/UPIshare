@@ -118,7 +118,7 @@ function QRCard() {
           <Image id="qr" alt="QR Code" />
       </Container>
       <CardActions>
-        <Button size="small" onClick={() => generateQR(true)}>
+        <Button size="small" variant="contained" onClick={() => generateQR(true)}>
           Pay now
         </Button>
       </CardActions>
