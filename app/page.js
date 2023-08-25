@@ -1,26 +1,22 @@
 "use client";
 
-import { red } from "@mui/material/colors";
+import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
+import ShareIcon from "@mui/icons-material/Share";
 import AppBar from "@mui/material/AppBar";
+import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
-import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import InputLabel from "@mui/material/InputLabel";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
 import Grid from "@mui/material/Unstable_Grid2";
+import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
-import CardActions from "@mui/material/CardActions";
-import IconButton from "@mui/material/IconButton";
-import ShareIcon from "@mui/icons-material/Share";
-import * as React from "react";
 
 function generateQR(open_link=false) {
   let upiId = document.getElementById("upiId").value;
@@ -60,21 +56,25 @@ function QRForm() {
   return (
     <div>
       <TextField
+        required
         id="upiId"
-        label="UPI ID*"
+        label="UPI ID"
         variant="outlined"
         className="form-element"
+        helperText="Enter your UPI ID"
         onChange={(e) => generateQR()}
       />
       <TextField
+        required
         id="name"
-        label="Name*"
+        label="Name"
         variant="outlined"
         className="form-element"
         onChange={(e) => generateQR()}
       />
       <TextField
         label="Amount (optional)"
+        type="number"
         id="amount"
         onChange={(e) => generateQR()}
         sx={{ m: 1, width: "25ch" }}
