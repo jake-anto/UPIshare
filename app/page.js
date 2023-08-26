@@ -1,7 +1,9 @@
 "use client";
 
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import ShareIcon from "@mui/icons-material/Share";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import AppBar from "@mui/material/AppBar";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -11,17 +13,15 @@ import CardHeader from "@mui/material/CardHeader";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
+import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import VerifiedIcon from "@mui/icons-material/Verified";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import styles from "./page.module.css";
 import { NumericFormat } from "react-number-format";
-import Stack from "@mui/material/Stack";
+import styles from "./page.module.css";
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
