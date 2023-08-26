@@ -18,7 +18,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import "./style.css";
+import styles from "./page.module.css"
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
@@ -63,7 +63,7 @@ function QRForm() {
         id="upiId"
         label="UPI ID"
         variant="outlined"
-        className="form-element"
+        className={styles.formElement}
         helperText="Enter payee's UPI ID"
         onChange={(e) => generateQR()}
       />
@@ -72,7 +72,7 @@ function QRForm() {
         id="name"
         label="Name"
         variant="outlined"
-        className="form-element"
+        className={styles.formElement}
         helperText="Enter payee's name"
         onChange={(e) => generateQR()}
       />
@@ -91,7 +91,7 @@ function QRForm() {
       <TextField
         label="Note"
         variant="outlined"
-        className="form-element"
+        className={styles.formElement}
         helperText="This shows up on Google Pay"
         onChange={(e) => generateQR()}
       />
@@ -119,10 +119,21 @@ function QRCard() {
         subheaderTypographyProps={{ id: "card-subheader" }}
       />
       <Container>
-          <Image id="qr" alt="QR Code" />
+        <Image
+          style={{
+            display: "block",
+            margin: "0 auto",
+          }}
+          id="qr"
+          alt="QR Code"
+        />
       </Container>
       <CardActions>
-        <Button size="small" variant="contained" onClick={() => generateQR(true)}>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => generateQR(true)}
+        >
           Pay now
         </Button>
       </CardActions>
@@ -133,6 +144,11 @@ function QRCard() {
 export default function Home() {
   return (
     <div>
+      <style jsx>{`
+        .form-element {
+          margin: 8px;
+        }
+      `}</style>
       <AppBar position="static">
         <Toolbar>
           <QrCodeScannerIcon sx={{ mr: 1 }} />
@@ -144,7 +160,9 @@ export default function Home() {
       <Grid
         container
         spacing={2}
-        className="inner"
+        style={{
+          margin: "16px"
+        }}
         sx={{
           display: "flex",
           flexDirection: {
