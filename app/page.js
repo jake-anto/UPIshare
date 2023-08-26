@@ -22,6 +22,73 @@ import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
 
+function validate() {
+  let upiId = document.getElementById("upiId").value;
+  let name = document.getElementById("name").value;
+  let amount = document.getElementById("amount").value;
+  let note = document.getElementById("note").value;
+
+  amount = parseFloat(amount.replace(/,/g, ""));
+
+  let upiId_helper = document.getElementById("upiId-helper-text");
+  let name_helper = document.getElementById("name-helper-text");
+  let amount_helper = document.getElementById("amount-helper-text");
+  let note_helper = document.getElementById("note-helper-text");
+
+  let validateButton = document.getElementById("validateButton");
+
+  var allGood = true;
+
+  if (upiId === "") {
+    upiId_helper.innerHTML = "UPI ID is required";
+    upiId_helper.style.color = "red";
+    allGood = false;
+
+  } else if (!(upiId.includes("@"))) {
+    upiId_helper.innerHTML = "Invalid UPI ID";
+    upiId_helper.style.color = "red";
+    allGood = false;
+  } else {
+    upiId_helper.innerHTML = "Looks good!";
+    upiId_helper.style.color = "green";
+  }
+
+  if (name === "") {
+    name_helper.innerHTML = "Name is required";
+    name_helper.style.color = "red";
+    allGood = false;
+  } else {
+    name_helper.innerHTML = "Looks good!";
+    name_helper.style.color = "green";
+  }
+
+  if (amount < 0) {
+    amount_helper.innerHTML = "Amount cannot be negative";
+    amount_helper.style.color = "red";
+    allGood = false;
+  } else {
+    amount_helper.innerHTML = "Looks good!";
+    amount_helper.style.color = "green";
+  }
+
+  if (note.length > 80) {
+    note_helper.innerHTML = "Note cannot exceed 80 characters";
+    note_helper.style.color = "red";
+    allGood = false;
+  } else {
+    note_helper.innerHTML = "Looks good!";
+    note_helper.style.color = "green";
+  }
+
+  if (allGood) {
+    validateButton.style.color = "green";
+    validateButton.style.borderColor = "green";
+  } else {
+    validateButton.style.color = "red";
+    validateButton.style.borderColor = "red";
+  }
+}
+
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
   let name = document.getElementById("name").value;
@@ -119,6 +186,8 @@ function QRForm() {
           style={{
             margin: "8px",
           }}
+          id="validateButton"
+          onClick={() => validate()}
         >
           Validate
         </Button>
