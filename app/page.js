@@ -47,7 +47,7 @@ function generateQR(open_link = false) {
 
   let url = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}`;
 
-  if (amount === "") {
+  if (amount === "" || isNaN(amount)) {
     url = `upi://pay?pa=${upiId}&pn=${name}`;
   }
 
