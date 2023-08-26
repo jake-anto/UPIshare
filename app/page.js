@@ -21,7 +21,6 @@ import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
-import styles from "./Home.module.css";
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
@@ -73,8 +72,9 @@ function QRForm() {
         id="upiId"
         label="UPI ID"
         variant="outlined"
-        className={styles.formElement}
+        className="form-element"
         helperText="Enter payee's UPI ID"
+        sx={{ m: 1 }}
         onChange={(e) => generateQR()}
       />
       <TextField
@@ -82,8 +82,9 @@ function QRForm() {
         id="name"
         label="Name"
         variant="outlined"
-        className={styles.formElement}
+        className="form-element"
         helperText="Enter payee's name"
+        sx={{ m: 1 }}
         onChange={(e) => generateQR()}
       />
       <Typography variant="h6">Optional Fields</Typography>
@@ -106,8 +107,9 @@ function QRForm() {
         label="Note"
         id="note"
         variant="outlined"
-        className={styles.formElement}
+        className="form-element"
         helperText="This shows up on Google Pay"
+        sx={{ m: 1 }}
         onChange={(e) => generateQR()}
       />
       <div>
