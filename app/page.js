@@ -17,10 +17,19 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
+import { green, blue, deepOrange } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
+
+const theme = createTheme({
+  palette: {
+    primary: deepOrange,
+    secondary: blue,
+  }
+});
 
 function validate() {
   let upiId = document.getElementById("upiId").value;
@@ -200,7 +209,7 @@ function QRCard() {
     <Card sx={{ maxWidth: 300, m: 1 }}>
       <CardHeader
         avatar={
-          <Avatar id="avatar" sx={{ bgcolor: red[500] }} alt="John Doe">
+          <Avatar id="avatar" sx={{ bgcolor: green[500] }} alt="John Doe">
             JD
           </Avatar>
         }
@@ -247,36 +256,38 @@ function QRCard() {
 export default function Home() {
   return (
     <div>
-      <style jsx>{`
-        .form-element {
-          margin: 8px;
-        }
-      `}</style>
-      <AppBar position="static">
-        <Toolbar>
-          <QrCodeScannerIcon sx={{ mr: 1 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            UPI QR Code Generator
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Stack
-        direction={{ sm: "column", md: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 3 }}
-        justifyContent="space-between"
-        style={{
-          margin: "16px",
-        }}
-      >
-        <QRForm />
-        <div
+      <ThemeProvider theme={theme}>
+        <style jsx>{`
+          .form-element {
+            margin: 8px;
+          }
+        `}</style>
+        <AppBar position="static">
+          <Toolbar>
+            <QrCodeScannerIcon sx={{ mr: 1 }} />
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              UPI QR Code Generator
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Stack
+          direction={{ sm: "column", md: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 3 }}
+          justifyContent="space-between"
           style={{
-            margin: "0 auto",
+            margin: "16px",
           }}
         >
-          <QRCard />
-        </div>
-      </Stack>
+          <QRForm />
+          <div
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            <QRCard />
+          </div>
+        </Stack>
+      </ThemeProvider>
     </div>
   );
 }
