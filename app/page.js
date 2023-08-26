@@ -14,11 +14,13 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Unstable_Grid2";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import styles from "./page.module.css"
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import styles from "./page.module.css";
+import Stack from "@mui/material/Stack";
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
@@ -95,13 +97,20 @@ function QRForm() {
         helperText="This shows up on Google Pay"
         onChange={(e) => generateQR()}
       />
+      <div>
+        <Button variant="outlined" startIcon={<VerifiedIcon />} style={{
+          margin: "8px",
+        }}>
+          Validate
+        </Button>
+      </div>
     </div>
   );
 }
 
 function QRCard() {
   return (
-    <Card>
+    <Card sx={{ maxWidth: 300 }}>
       <CardHeader
         avatar={
           <Avatar id="avatar" sx={{ bgcolor: red[500] }} alt="John Doe">
@@ -135,6 +144,10 @@ function QRCard() {
         <Button
           size="small"
           variant="contained"
+          startIcon={<CurrencyRupeeIcon />}
+          style={{
+            margin: "6px auto",
+          }}
           onClick={() => generateQR(true)}
         >
           Pay now
@@ -160,29 +173,23 @@ export default function Home() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid
-        container
-        spacing={2}
+      <Stack
+        direction={{ sm: "column", md: "row" }}
+        spacing={{ xs: 1, sm: 2, md: 3 }}
+        justifyContent="space-between"
         style={{
-          margin: "16px"
-        }}
-        sx={{
-          display: "flex",
-          flexDirection: {
-            xs: "column",
-            sm: "row",
-          },
+          margin: "16px",
         }}
       >
-        <Grid xs={8}>
-          <QRForm />
-        </Grid>
-        <Grid xs={4}>
-          <Container maxWidth="sm">
-            <QRCard />
-          </Container>
-        </Grid>
-      </Grid>
+        <QRForm />
+        <div
+          style={{
+            margin: "0 auto",
+          }}
+        >
+          <QRCard />
+        </div>
+      </Stack>
     </div>
   );
 }
