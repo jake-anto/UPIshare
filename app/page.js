@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
+import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
@@ -17,7 +18,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import Container from "@mui/material/Container";
+import "./style.css";
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
