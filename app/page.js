@@ -21,7 +21,7 @@ import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
-import styles from "./page.module.css";
+import styles from "./Home.module.css";
 
 function generateQR(open_link = false) {
   let upiId = document.getElementById("upiId").value;
@@ -31,6 +31,7 @@ function generateQR(open_link = false) {
   let avatar = document.getElementById("avatar");
   let cardTitle = document.getElementById("card-title");
   let cardSubheader = document.getElementById("card-subheader");
+  let note = document.getElementById("note").value;
 
   if (upiId === "") {
     upiId = "sample@upi";
@@ -43,12 +44,16 @@ function generateQR(open_link = false) {
   cardTitle.innerHTML = name;
   cardSubheader.innerHTML = upiId;
 
+  let url = `upi://pay?pa=${upiId}&pn=${name}`;
+
   amount = parseFloat(amount.replace(/,/g, ""));
 
-  let url = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}`;
+  if (amount > 0) {
+    url += `&am=${amount}`;
+  }
 
-  if (amount === "" || isNaN(amount)) {
-    url = `upi://pay?pa=${upiId}&pn=${name}`;
+  if (note !== "" && note !== undefined) {
+    url += `&tn=${note}`;
   }
 
   QRCode.toDataURL(url, function (err, data) {
@@ -88,7 +93,7 @@ function QRForm() {
         id="amount"
         helperText="Enter amount to be paid"
         onValueChange={(e) => generateQR()}
-        allowNegative = {false}
+        allowNegative={false}
         thousandSeparator=","
         decimalScale={2}
         thousandsGroupStyle="lakh"
@@ -99,6 +104,7 @@ function QRForm() {
       />
       <TextField
         label="Note"
+        id="note"
         variant="outlined"
         className={styles.formElement}
         helperText="This shows up on Google Pay"
