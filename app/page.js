@@ -18,8 +18,9 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { red } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
-import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import styles from "./page.module.css";
+import { NumericFormat } from "react-number-format";
 import Stack from "@mui/material/Stack";
 
 function generateQR(open_link = false) {
@@ -41,6 +42,8 @@ function generateQR(open_link = false) {
   avatar.innerHTML = name.charAt(0);
   cardTitle.innerHTML = name;
   cardSubheader.innerHTML = upiId;
+
+  amount = parseFloat(amount.replace(/,/g, ""));
 
   let url = `upi://pay?pa=${upiId}&pn=${name}&am=${amount}`;
 
@@ -79,12 +82,16 @@ function QRForm() {
         onChange={(e) => generateQR()}
       />
       <Typography variant="h6">Optional Fields</Typography>
-      <TextField
+      <NumericFormat
+        customInput={TextField}
         label="Amount"
-        type="number"
         id="amount"
         helperText="Enter amount to be paid"
-        onChange={(e) => generateQR()}
+        onValueChange={(e) => generateQR()}
+        allowNegative = {false}
+        thousandSeparator=","
+        decimalScale={2}
+        thousandsGroupStyle="lakh"
         sx={{ m: 1, width: "210px" }}
         InputProps={{
           startAdornment: <InputAdornment position="start">₹</InputAdornment>,
@@ -98,9 +105,13 @@ function QRForm() {
         onChange={(e) => generateQR()}
       />
       <div>
-        <Button variant="outlined" startIcon={<VerifiedIcon />} style={{
-          margin: "8px",
-        }}>
+        <Button
+          variant="outlined"
+          startIcon={<VerifiedIcon />}
+          style={{
+            margin: "8px",
+          }}
+        >
           Validate
         </Button>
       </div>
