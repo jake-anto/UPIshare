@@ -41,12 +41,11 @@ function validate() {
 
   if (upiId === "") {
     upiId_helper.innerHTML = "UPI ID is required";
-    upiId_helper.style.color = "red";
+    upiId_helper.style.color = "#f44336";
     allGood = false;
-
-  } else if (!(upiId.includes("@"))) {
+  } else if (!upiId.includes("@")) {
     upiId_helper.innerHTML = "Invalid UPI ID";
-    upiId_helper.style.color = "red";
+    upiId_helper.style.color = "#f44336";
     allGood = false;
   } else {
     upiId_helper.innerHTML = "Looks good!";
@@ -55,7 +54,7 @@ function validate() {
 
   if (name === "") {
     name_helper.innerHTML = "Name is required";
-    name_helper.style.color = "red";
+    name_helper.style.color = "#f44336";
     allGood = false;
   } else {
     name_helper.innerHTML = "Looks good!";
@@ -64,7 +63,7 @@ function validate() {
 
   if (amount < 0) {
     amount_helper.innerHTML = "Amount cannot be negative";
-    amount_helper.style.color = "red";
+    amount_helper.style.color = "#f44336";
     allGood = false;
   } else {
     amount_helper.innerHTML = "Looks good!";
@@ -73,7 +72,7 @@ function validate() {
 
   if (note.length > 80) {
     note_helper.innerHTML = "Note cannot exceed 80 characters";
-    note_helper.style.color = "red";
+    note_helper.style.color = "#f44336";
     allGood = false;
   } else {
     note_helper.innerHTML = "Looks good!";
@@ -84,8 +83,8 @@ function validate() {
     validateButton.style.color = "green";
     validateButton.style.borderColor = "green";
   } else {
-    validateButton.style.color = "red";
-    validateButton.style.borderColor = "red";
+    validateButton.style.color = "#f44336";
+    validateButton.style.borderColor = "#f44336";
   }
 }
 
