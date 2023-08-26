@@ -129,7 +129,7 @@ function QRForm() {
 
 function QRCard() {
   return (
-    <Card sx={{ maxWidth: 300 }}>
+    <Card sx={{ maxWidth: 300, m: 1 }}>
       <CardHeader
         avatar={
           <Avatar id="avatar" sx={{ bgcolor: red[500] }} alt="John Doe">
