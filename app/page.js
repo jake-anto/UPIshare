@@ -63,7 +63,7 @@ function QRForm() {
         label="UPI ID"
         variant="outlined"
         className="form-element"
-        helperText="Enter your UPI ID"
+        helperText="Enter payee's UPI ID"
         onChange={(e) => generateQR()}
       />
       <TextField
@@ -72,6 +72,7 @@ function QRForm() {
         label="Name"
         variant="outlined"
         className="form-element"
+        helperText="Enter payee's name"
         onChange={(e) => generateQR()}
       />
       <Typography variant="h6">Optional Fields</Typography>
@@ -79,6 +80,7 @@ function QRForm() {
         label="Amount"
         type="number"
         id="amount"
+        helperText="Enter amount to be paid"
         onChange={(e) => generateQR()}
         sx={{ m: 1, width: "210px" }}
         InputProps={{
@@ -89,6 +91,7 @@ function QRForm() {
         label="Note"
         variant="outlined"
         className="form-element"
+        helperText="This shows up on Google Pay"
         onChange={(e) => generateQR()}
       />
     </div>
