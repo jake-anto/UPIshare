@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardHeader from "@mui/material/CardHeader";
+import CircularProgress from "@mui/material/CircularProgress";
 import Container from "@mui/material/Container";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -256,7 +257,7 @@ function QRCard() {
       text: `Pay ${url.pn} using UPI`,
       url: `${window.location.origin}?upiId=${url.pa}&name=${url.pn}&amount=${url.am}&note=${url.tn}`,
     });
-  }
+  };
   return (
     <Card sx={{ maxWidth: 300, m: 1 }}>
       <CardHeader
@@ -321,7 +322,14 @@ function QRCard() {
 
 export default function Home() {
   useEffect(() => {
+    let stack = document.getElementById("stack");
+    let spinner = document.getElementById("spinner");
+
     shareMode();
+
+    // Show the stack and hide the skeleton (loading screen)
+    stack.style.display = "flex";
+    spinner.style.display = "none";
   }, []);
   return (
     <div>
@@ -353,7 +361,9 @@ export default function Home() {
           justifyContent="space-between"
           style={{
             margin: "16px",
+            display: "none",
           }}
+          id="stack"
         >
           <QRForm />
           <div
@@ -364,6 +374,14 @@ export default function Home() {
             <QRCard />
           </div>
         </Stack>
+        <CircularProgress
+          style={{
+            top: "50%",
+            left: "50%",
+            position: "absolute",
+          }}
+          id="spinner"
+        />
       </ThemeProvider>
     </div>
   );

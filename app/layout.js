@@ -5,7 +5,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" style={{
+      height: "100%",
+      width: "100%",
+    }}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link
