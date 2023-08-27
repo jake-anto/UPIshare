@@ -252,8 +252,8 @@ function QRCard() {
   const handleOpen = () => {
     const url = generateQR();
     navigator.share({
-      title: "UPI QR Code",
-      text: "Scan to pay",
+      title: "UPI QR Code Generator",
+      text: `Pay ${url.pn} using UPI`,
       url: `${window.location.origin}?upiId=${url.pa}&name=${url.pn}&amount=${url.am}&note=${url.tn}`,
     });
   }
