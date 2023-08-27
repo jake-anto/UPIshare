@@ -23,6 +23,7 @@ import { createTheme } from "@mui/material/styles";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 const theme = createTheme({
   palette: {
@@ -303,6 +304,14 @@ export default function Home() {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               UPI QR Code Generator
             </Typography>
+            <IconButton
+              color="inherit"
+              onClick={() =>
+                window.open("https://github.com/j-eo/upi-qr-generator")
+              }
+            >
+              <GitHubIcon />
+            </IconButton>
           </Toolbar>
         </AppBar>
         <Stack
