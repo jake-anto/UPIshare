@@ -13,7 +13,18 @@
     "productivity",
     "utilities"
   ],
-  "screenshots": [],
+  "screenshots": [
+    {
+      "src": "screenshots/desktop.png",
+      "sizes": "1280x800",
+      "type": "image/png"
+    },
+    {
+      "src": "screenshots/mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png"
+    }
+  ],
   "icons": [
     {
       "src": "windows11/SmallTile.scale-100.png",
