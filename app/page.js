@@ -31,6 +31,19 @@ const theme = createTheme({
   },
 });
 
+function upiValidator(upiId) {
+  if (!upiId.includes("@")) return false;
+
+  let parts = upiId.split("@");
+
+  if (parts.length !== 2) return false;
+  if (parts[0] === "") return false;
+  if (parts[1] === "") return false;
+  if (parts[0].length < 3) return false;
+
+  return true;
+}
+
 function validate() {
   let upiId = document.getElementById("upiId").value;
   let name = document.getElementById("name").value;
@@ -52,7 +65,7 @@ function validate() {
     upiId_helper.innerHTML = "UPI ID is required";
     upiId_helper.style.color = "#f44336";
     allGood = false;
-  } else if (!upiId.includes("@")) {
+  } else if (!upiValidator(upiId)) {
     upiId_helper.innerHTML = "Invalid UPI ID";
     upiId_helper.style.color = "#f44336";
     allGood = false;
@@ -125,7 +138,7 @@ function generateQR(open_link = false) {
 
   if (parsedAmount > 0) {
     url += `&am=${parsedAmount}`;
-    amountDisplay.innerHTML = `Pay ₹${amount}`;
+    amountDisplay.innerHTML = `Scan to pay ₹${amount}`;
   } else {
     amountDisplay.innerHTML = "";
   }
