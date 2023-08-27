@@ -159,6 +159,13 @@ function generateQR(open_link = false) {
   });
 
   if (open_link) window.open(url);
+
+  return {
+    pa: upiId,
+    pn: name,
+    am: parsedAmount,
+    tn: note,
+  };
 }
 
 function shareMode() {
@@ -242,6 +249,14 @@ function QRForm() {
 }
 
 function QRCard() {
+  const handleOpen = () => {
+    const url = generateQR();
+    navigator.share({
+      title: "UPI QR Code",
+      text: "Scan to pay",
+      url: `${window.location.origin}?upiId=${url.pa}&name=${url.pn}&amount=${url.am}&note=${url.tn}`,
+    });
+  }
   return (
     <Card sx={{ maxWidth: 300, m: 1 }}>
       <CardHeader
@@ -251,7 +266,7 @@ function QRCard() {
           </Avatar>
         }
         action={
-          <IconButton aria-label="share">
+          <IconButton aria-label="share" onClick={handleOpen}>
             <ShareIcon />
           </IconButton>
         }
