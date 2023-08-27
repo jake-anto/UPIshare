@@ -2,6 +2,7 @@
 
 import { ThemeProvider } from "@emotion/react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import ShareIcon from "@mui/icons-material/Share";
 import VerifiedIcon from "@mui/icons-material/Verified";
@@ -22,8 +23,8 @@ import { blue, deepOrange, green } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
 import Image from "next/image";
 import QRCode from "qrcode";
+import { useEffect } from "react";
 import { NumericFormat } from "react-number-format";
-import GitHubIcon from "@mui/icons-material/GitHub";
 
 const theme = createTheme({
   palette: {
@@ -160,9 +161,23 @@ function generateQR(open_link = false) {
   if (open_link) window.open(url);
 }
 
+function shareMode() {
+  const params = new URLSearchParams(window.location.search);
+  const form = document.getElementById("input-form");
+
+  if (params.has("upiId") && params.has("name")) {
+    form.style.display = "none";
+    document.getElementById("upiId").value = params.get("upiId");
+    document.getElementById("name").value = params.get("name");
+    document.getElementById("amount").value = params.get("amount");
+    document.getElementById("note").value = params.get("note");
+    generateQR();
+  }
+}
+
 function QRForm() {
   return (
-    <div>
+    <div id="input-form">
       <Typography variant="h6">Required Fields</Typography>
       <TextField
         required
@@ -290,6 +305,9 @@ function QRCard() {
 }
 
 export default function Home() {
+  useEffect(() => {
+    shareMode();
+  }, []);
   return (
     <div>
       <ThemeProvider theme={theme}>
