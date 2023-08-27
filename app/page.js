@@ -17,10 +17,32 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
+import { green, blue, deepOrange } from "@mui/material/colors";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@emotion/react";
+
+const theme = createTheme({
+  palette: {
+    primary: deepOrange,
+    secondary: blue,
+  },
+});
+
+function upiValidator(upiId) {
+  if (!upiId.includes("@")) return false;
+
+  let parts = upiId.split("@");
+
+  if (parts.length !== 2) return false;
+  if (parts[0] === "") return false;
+  if (parts[1] === "") return false;
+  if (parts[0].length < 3) return false;
+
+  return true;
+}
 
 function validate() {
   let upiId = document.getElementById("upiId").value;
@@ -43,13 +65,13 @@ function validate() {
     upiId_helper.innerHTML = "UPI ID is required";
     upiId_helper.style.color = "#f44336";
     allGood = false;
-  } else if (!upiId.includes("@")) {
+  } else if (!upiValidator(upiId)) {
     upiId_helper.innerHTML = "Invalid UPI ID";
     upiId_helper.style.color = "#f44336";
     allGood = false;
   } else {
     upiId_helper.innerHTML = "Looks good!";
-    upiId_helper.style.color = "green";
+    upiId_helper.style.color = "#4caf50";
   }
 
   if (name === "") {
@@ -58,7 +80,7 @@ function validate() {
     allGood = false;
   } else {
     name_helper.innerHTML = "Looks good!";
-    name_helper.style.color = "green";
+    name_helper.style.color = "#4caf50";
   }
 
   if (amount < 0) {
@@ -67,7 +89,7 @@ function validate() {
     allGood = false;
   } else {
     amount_helper.innerHTML = "Looks good!";
-    amount_helper.style.color = "green";
+    amount_helper.style.color = "#4caf50";
   }
 
   if (note.length > 80) {
@@ -76,12 +98,12 @@ function validate() {
     allGood = false;
   } else {
     note_helper.innerHTML = "Looks good!";
-    note_helper.style.color = "green";
+    note_helper.style.color = "#4caf50";
   }
 
   if (allGood) {
-    validateButton.style.color = "green";
-    validateButton.style.borderColor = "green";
+    validateButton.style.color = "#4caf50";
+    validateButton.style.borderColor = "#4caf50";
   } else {
     validateButton.style.color = "#f44336";
     validateButton.style.borderColor = "#f44336";
@@ -97,6 +119,7 @@ function generateQR(open_link = false) {
   let cardTitle = document.getElementById("card-title");
   let cardSubheader = document.getElementById("card-subheader");
   let note = document.getElementById("note").value;
+  let amountDisplay = document.getElementById("amount-display");
 
   if (upiId === "") {
     upiId = "sample@upi";
@@ -111,10 +134,13 @@ function generateQR(open_link = false) {
 
   let url = `upi://pay?pa=${upiId}&pn=${name}`;
 
-  amount = parseFloat(amount.replace(/,/g, ""));
+  let parsedAmount = parseFloat(amount.replace(/,/g, ""));
 
-  if (amount > 0) {
-    url += `&am=${amount}`;
+  if (parsedAmount > 0) {
+    url += `&am=${parsedAmount}`;
+    amountDisplay.innerHTML = `Scan to pay ₹${amount}`;
+  } else {
+    amountDisplay.innerHTML = "";
   }
 
   if (note !== "" && note !== undefined) {
@@ -200,7 +226,7 @@ function QRCard() {
     <Card sx={{ maxWidth: 300, m: 1 }}>
       <CardHeader
         avatar={
-          <Avatar id="avatar" sx={{ bgcolor: red[500] }} alt="John Doe">
+          <Avatar id="avatar" sx={{ bgcolor: green[500] }} alt="John Doe">
             JD
           </Avatar>
         }
@@ -215,6 +241,13 @@ function QRCard() {
         subheaderTypographyProps={{ id: "card-subheader" }}
       />
       <Container>
+        <Typography
+          variant="h6"
+          id="amount-display"
+          style={{
+            textAlign: "center",
+          }}
+        ></Typography>
         <Image
           style={{
             display: "block",
@@ -247,36 +280,38 @@ function QRCard() {
 export default function Home() {
   return (
     <div>
-      <style jsx>{`
-        .form-element {
-          margin: 8px;
-        }
-      `}</style>
-      <AppBar position="static">
-        <Toolbar>
-          <QrCodeScannerIcon sx={{ mr: 1 }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            UPI QR Code Generator
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Stack
-        direction={{ sm: "column", md: "row" }}
-        spacing={{ xs: 1, sm: 2, md: 3 }}
-        justifyContent="space-between"
-        style={{
-          margin: "16px",
-        }}
-      >
-        <QRForm />
-        <div
+      <ThemeProvider theme={theme}>
+        <style jsx>{`
+          .form-element {
+            margin: 8px;
+          }
+        `}</style>
+        <AppBar position="static">
+          <Toolbar>
+            <QrCodeScannerIcon sx={{ mr: 1 }} />
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              UPI QR Code Generator
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Stack
+          direction={{ sm: "column", md: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 3 }}
+          justifyContent="space-between"
           style={{
-            margin: "0 auto",
+            margin: "16px",
           }}
         >
-          <QRCard />
-        </div>
-      </Stack>
+          <QRForm />
+          <div
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            <QRCard />
+          </div>
+        </Stack>
+      </ThemeProvider>
     </div>
   );
 }
