@@ -251,7 +251,6 @@ function QRCard() {
           style={{
             textAlign: "center",
           }}
-          gutterBottom
         ></Typography>
         <Image
           style={{
@@ -269,7 +268,6 @@ function QRCard() {
           style={{
             textAlign: "center",
           }}
-          gutterBottom
           id="note-display"
         ></Typography>
       </Container>
