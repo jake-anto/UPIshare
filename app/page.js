@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeProvider } from "@emotion/react";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import QrCodeScannerIcon from "@mui/icons-material/QrCodeScanner";
 import ShareIcon from "@mui/icons-material/Share";
@@ -17,12 +18,11 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { green, blue, deepOrange } from "@mui/material/colors";
+import { blue, deepOrange, green } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 import Image from "next/image";
 import QRCode from "qrcode";
 import { NumericFormat } from "react-number-format";
-import { createTheme } from "@mui/material/styles";
-import { ThemeProvider } from "@emotion/react";
 
 const theme = createTheme({
   palette: {
@@ -120,6 +120,7 @@ function generateQR(open_link = false) {
   let cardSubheader = document.getElementById("card-subheader");
   let note = document.getElementById("note").value;
   let amountDisplay = document.getElementById("amount-display");
+  let noteDisplay = document.getElementById("note-display");
 
   if (upiId === "") {
     upiId = "sample@upi";
@@ -143,8 +144,11 @@ function generateQR(open_link = false) {
     amountDisplay.innerHTML = "";
   }
 
-  if (note !== "" && note !== undefined) {
+  if (note !== "" || note !== undefined) {
     url += `&tn=${note}`;
+    noteDisplay.innerText = note;
+  } else {
+    noteDisplay.innerHTML = "";
   }
 
   QRCode.toDataURL(url, function (err, data) {
@@ -247,6 +251,7 @@ function QRCard() {
           style={{
             textAlign: "center",
           }}
+          gutterBottom
         ></Typography>
         <Image
           style={{
@@ -259,6 +264,14 @@ function QRCard() {
           width={200}
           height={200}
         />
+        <Typography
+          variant="subtitle1"
+          style={{
+            textAlign: "center",
+          }}
+          gutterBottom
+          id="note-display"
+        ></Typography>
       </Container>
       <CardActions>
         <Button
