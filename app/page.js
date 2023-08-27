@@ -71,7 +71,7 @@ function validate() {
     allGood = false;
   } else {
     upiId_helper.innerHTML = "Looks good!";
-    upiId_helper.style.color = "green";
+    upiId_helper.style.color = "#4caf50";
   }
 
   if (name === "") {
@@ -80,7 +80,7 @@ function validate() {
     allGood = false;
   } else {
     name_helper.innerHTML = "Looks good!";
-    name_helper.style.color = "green";
+    name_helper.style.color = "#4caf50";
   }
 
   if (amount < 0) {
@@ -89,7 +89,7 @@ function validate() {
     allGood = false;
   } else {
     amount_helper.innerHTML = "Looks good!";
-    amount_helper.style.color = "green";
+    amount_helper.style.color = "#4caf50";
   }
 
   if (note.length > 80) {
@@ -98,12 +98,12 @@ function validate() {
     allGood = false;
   } else {
     note_helper.innerHTML = "Looks good!";
-    note_helper.style.color = "green";
+    note_helper.style.color = "#4caf50";
   }
 
   if (allGood) {
-    validateButton.style.color = "green";
-    validateButton.style.borderColor = "green";
+    validateButton.style.color = "#4caf50";
+    validateButton.style.borderColor = "#4caf50";
   } else {
     validateButton.style.color = "#f44336";
     validateButton.style.borderColor = "#f44336";
