@@ -28,7 +28,7 @@ const theme = createTheme({
   palette: {
     primary: deepOrange,
     secondary: blue,
-  }
+  },
 });
 
 function validate() {
@@ -106,6 +106,7 @@ function generateQR(open_link = false) {
   let cardTitle = document.getElementById("card-title");
   let cardSubheader = document.getElementById("card-subheader");
   let note = document.getElementById("note").value;
+  let amountDisplay = document.getElementById("amount-display");
 
   if (upiId === "") {
     upiId = "sample@upi";
@@ -120,10 +121,13 @@ function generateQR(open_link = false) {
 
   let url = `upi://pay?pa=${upiId}&pn=${name}`;
 
-  amount = parseFloat(amount.replace(/,/g, ""));
+  let parsedAmount = parseFloat(amount.replace(/,/g, ""));
 
-  if (amount > 0) {
-    url += `&am=${amount}`;
+  if (parsedAmount > 0) {
+    url += `&am=${parsedAmount}`;
+    amountDisplay.innerHTML = `Pay ₹${amount}`;
+  } else {
+    amountDisplay.innerHTML = "";
   }
 
   if (note !== "" && note !== undefined) {
@@ -224,6 +228,13 @@ function QRCard() {
         subheaderTypographyProps={{ id: "card-subheader" }}
       />
       <Container>
+        <Typography
+          variant="h6"
+          id="amount-display"
+          style={{
+            textAlign: "center",
+          }}
+        ></Typography>
         <Image
           style={{
             display: "block",
