@@ -204,7 +204,7 @@ function QRForm() {
         id="note"
         variant="outlined"
         className="form-element"
-        helperText="This shows up on Google Pay"
+        helperText="Enter transaction note"
         sx={{ m: 1 }}
         onChange={(e) => generateQR()}
       />
