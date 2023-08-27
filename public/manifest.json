@@ -9,7 +9,10 @@
   "short_name": "UPI QR Gen",
   "start_url": "/",
   "theme_color": "#2979ff",
-  "categories": ["productivity"],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
   "screenshots": [],
   "icons": [
     {
@@ -461,6 +464,13 @@
       "sizes": "1024x1024"
     }
   ],
-  "shortcuts": [],
-  "lang": "en"
+  "shortcuts": [
+    {
+      "name": "Generate QR Code",
+      "url": "/",
+      "description": "Generate an UPI QR Code"
+    }
+  ],
+  "lang": "en",
+  "prefer_related_applications": false
 }
