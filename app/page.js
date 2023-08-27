@@ -133,8 +133,8 @@ function generateQR(open_link = false) {
   }
 
   avatar.innerHTML = name.charAt(0);
-  cardTitle.innerHTML = name;
-  cardSubheader.innerHTML = upiId;
+  cardTitle.innerText = name;
+  cardSubheader.innerText = upiId;
 
   let url = `upi://pay?pa=${upiId}&pn=${name}`;
 
@@ -142,12 +142,12 @@ function generateQR(open_link = false) {
 
   if (parsedAmount > 0) {
     url += `&am=${parsedAmount}`;
-    amountDisplay.innerHTML = `Scan to pay ₹${amount}`;
+    amountDisplay.innerText = `Scan to pay ₹${amount}`;
   } else {
     amountDisplay.innerHTML = "";
   }
 
-  if (note !== "" || note !== undefined) {
+  if (note !== "") {
     url += `&tn=${note}`;
     noteDisplay.innerText = note;
   } else {
@@ -254,7 +254,7 @@ function QRCard() {
     const url = generateQR();
     navigator.share({
       title: "UPI QR Code Generator",
-      text: `Pay ${url.pn} using UPI`,
+      text: `Pay ${url.pn} using UPI:`,
       url: `${window.location.origin}?upiId=${url.pa}&name=${url.pn}&amount=${url.am}&note=${url.tn}`,
     });
   };
