@@ -1,5 +1,5 @@
 {
-  "background_color": "#ff5722",
+  "background_color": "#fff",
   "description": "Created by Jake Anto",
   "dir": "ltr",
   "display": "standalone",
@@ -8,7 +8,7 @@
   "scope": "/",
   "short_name": "UPI QR Gen",
   "start_url": "/",
-  "theme_color": "#2979ff",
+  "theme_color": "#ff5722",
   "categories": [
     "productivity",
     "utilities"
