@@ -332,6 +332,10 @@ export default function Home() {
     // Show the stack and hide the spinner
     stack.style.display = "flex";
     spinner.style.display = "none";
+
+    // Register PWA service worker
+    if ("serviceWorker" in navigator)
+      navigator.serviceWorker.register("/sw.js");
   }, []);
   return (
     <div>
