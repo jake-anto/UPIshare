@@ -113,10 +113,9 @@ function validate() {
   }
 }
 
-function generateQR(open_link = false) {
+function generateQR(open_link = false, amount = 0) {
   let upiId = document.getElementById("upiId").value;
   let name = document.getElementById("name").value;
-  let amount = document.getElementById("amount").value;
   let qr = document.getElementById("qr");
   let avatar = document.getElementById("avatar");
   let cardTitle = document.getElementById("card-title");
@@ -124,6 +123,8 @@ function generateQR(open_link = false) {
   let note = document.getElementById("note").value;
   let amountDisplay = document.getElementById("amount-display");
   let noteDisplay = document.getElementById("note-display");
+  // I have to do this to bypass a bug which causes NumberFormat to not update its value
+  if (amount === 0) amount = document.getElementById("amount").value;
 
   if (upiId === "") {
     upiId = "sample@upi";
@@ -164,7 +165,7 @@ function generateQR(open_link = false) {
   return {
     pa: upiId,
     pn: name,
-    am: parsedAmount,
+    am: amount,
     tn: note,
   };
 }
@@ -179,7 +180,7 @@ function shareMode() {
     document.getElementById("name").value = params.get("name");
     document.getElementById("amount").value = params.get("amount");
     document.getElementById("note").value = params.get("note");
-    generateQR();
+    generateQR(false, params.get("amount"));
   }
 }
 
@@ -327,7 +328,7 @@ export default function Home() {
 
     shareMode();
 
-    // Show the stack and hide the skeleton (loading screen)
+    // Show the stack and hide the spinner
     stack.style.display = "flex";
     spinner.style.display = "none";
   }, []);
