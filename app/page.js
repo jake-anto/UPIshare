@@ -345,7 +345,15 @@ export default function Home() {
           <Toolbar>
             <QrCodeScannerIcon sx={{ mr: 1 }} />
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              UPI QR Code Generator
+              <a
+                href="/"
+                style={{
+                  color: "inherit",
+                  textDecoration: "inherit",
+                }}
+              >
+                UPI QR Code Generator
+              </a>
             </Typography>
             <IconButton
               color="inherit"
