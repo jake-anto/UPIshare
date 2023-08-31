@@ -360,6 +360,7 @@ export default function Home() {
               onClick={() =>
                 window.open("https://github.com/j-eo/upi-qr-generator")
               }
+              title="Visit GitHub Repository"
             >
               <GitHubIcon />
             </IconButton>
