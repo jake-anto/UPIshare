@@ -323,6 +323,7 @@ function QRCard() {
 
 export default function Home() {
   useEffect(() => {
+    // This is a dirty hack
     let stack = document.getElementById("stack");
     let spinner = document.getElementById("spinner");
 
@@ -380,6 +381,7 @@ export default function Home() {
             top: "50%",
             left: "50%",
             position: "absolute",
+            margin: "-20px 0 0 -20px",
           }}
           id="spinner"
         />
