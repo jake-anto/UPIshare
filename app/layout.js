@@ -2,6 +2,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import Head from "next/head";
 
 export const metadata = {
   title: "UPI QR Code Generator",
@@ -14,7 +15,7 @@ export default function RootLayout({ children }) {
       height: "100%",
       width: "100%",
     }}>
-      <head>
+      <Head>
         <link rel="manifest" href="/manifest.json" />
         <link
           rel="apple-touch-icon"
@@ -35,7 +36,7 @@ export default function RootLayout({ children }) {
         />
         <meta name="msapplication-TileColor" content="#ff5722" />
         <meta name="theme-color" content="#ffffff" />
-      </head>
+      </Head>
       <body
         style={{
           margin: 0,
