@@ -4,8 +4,8 @@ import "./global.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata = {
-  title: "My Mantine app",
-  description: "I have followed setup instructions carefully",
+  title: "UPI QR Code Generator",
+  description: "Generate UPI QR codes for payments",
 };
 
 export default function RootLayout({ children }) {
