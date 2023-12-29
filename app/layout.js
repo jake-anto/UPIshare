@@ -1,48 +1,21 @@
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import Head from "next/head";
+import "@mantine/core/styles.css";
+import "./global.css";
+
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata = {
-  title: "UPI QR Code Generator",
-  description: "Created by Jake Anto",
+  title: "My Mantine app",
+  description: "I have followed setup instructions carefully",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" style={{
-      height: "100%",
-      width: "100%",
-    }}>
-      <Head>
-        <link rel="manifest" href="/manifest.json" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
-        <meta name="msapplication-TileColor" content="#ff5722" />
-        <meta name="theme-color" content="#ffffff" />
-      </Head>
-      <body
-        style={{
-          margin: 0,
-        }}
-      >
-        {children}
+    <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
+      <body>
+        <MantineProvider>{children}</MantineProvider>
       </body>
     </html>
   );
