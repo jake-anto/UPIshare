@@ -42,7 +42,6 @@ export default function Customize({ data }) {
       ...customizations,
       [name]: input,
     });
-    console.log(customizations);
   };
 
   const handleColorChange = (color) => {
