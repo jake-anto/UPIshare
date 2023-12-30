@@ -1,6 +1,5 @@
 import { ActionIcon, Avatar, Flex, Group, Paper, Text } from "@mantine/core";
-import { IconCreditCardPay, IconShare } from "@tabler/icons-react";
-import { useState } from "react";
+import { IconShare } from "@tabler/icons-react";
 import QRCode from "react-fancy-qrcode";
 
 export default function QrCard({ data, avatarColor, avatarInitials }) {
