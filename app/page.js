@@ -112,7 +112,7 @@ export default function Home() {
                     rightSection={<IconChevronRight />}
                     onClick={handleFormSubmit}
                   >
-                    Generate QR Code
+                    Customize
                   </Button>
                 </Flex>
               </>
