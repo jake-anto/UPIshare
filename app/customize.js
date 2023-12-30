@@ -1,4 +1,10 @@
-import { ColorInput, Flex, Group, Switch, TextInput } from "@mantine/core";
+import {
+  ColorInput,
+  Flex,
+  Group,
+  Switch,
+  TextInput,
+} from "@mantine/core";
 import { useState } from "react";
 import QrCard from "./qr-card";
 
@@ -15,18 +21,44 @@ function computeAvatarInitials(name) {
 }
 
 export default function Customize({ data }) {
-  const [avatarColor, setAvatarColor] = useState("#fa5252");
-  const [avatarInitials, setAvatarInitials] = useState(
-    computeAvatarInitials(data.name)
-  );
+  const [customizations, setCustomizations] = useState({
+    primaryColor: "#fa5252",
+    avatarInitials: computeAvatarInitials(data.name),
+    shareButton: true,
+    payButton: true,
+    avatar: true,
+    applyColorToAvatar: true,
+    applyColorToShareButton: true,
+    applyColorToPayButton: true,
+  });
+
+  const handleChange = (e) => {
+    const { name, type } = e.target;
+
+    // Fix for Switch and Chip
+    const input = type === "checkbox" ? e.target.checked : e.target.value;
+
+    setCustomizations({
+      ...customizations,
+      [name]: input,
+    });
+    console.log(customizations);
+  };
+
+  const handleColorChange = (color) => {
+    setCustomizations({
+      ...customizations,
+      primaryColor: color,
+    });
+  };
 
   return (
     <div>
       <h1>Customize</h1>
-      <Group preventGrowOverflow={false} grow>
+      <Group m="sm" preventGrowOverflow={false} grow>
         <ColorInput
           format="hex"
-          label="Avatar color"
+          label="Primary color"
           swatches={[
             "#2e2e2e",
             "#868e96",
@@ -43,24 +75,76 @@ export default function Customize({ data }) {
             "#fab005",
             "#fd7e14",
           ]}
-          value={avatarColor}
-          onChange={setAvatarColor}
+          value={customizations.primaryColor}
+          onChange={handleColorChange}
+          name="primaryColor"
         />
         <TextInput
           label="Avatar Initials"
           placeholder="Input placeholder"
-          value={avatarInitials}
-          onChange={setAvatarInitials}
+          value={customizations.avatarInitials}
+          onChange={handleChange}
+          name="avatarInitials"
         />
-        <Switch defaultChecked label="Apply color to share button" />
+      </Group>
+      <Group m="sm" preventGrowOverflow={false} grow>
+        <div>
+          <Switch
+            defaultChecked
+            label="Apply color to Avatar"
+            value={customizations.applyColorToAvatar}
+            onChange={handleChange}
+            name="applyColorToAvatar"
+            m="sm"
+          />
+          <Switch
+            defaultChecked
+            label="Apply color to share button"
+            value={customizations.applyColorToShareButton}
+            onChange={handleChange}
+            name="applyColorToShareButton"
+            m="sm"
+          />
+          <Switch
+            defaultChecked
+            label="Apply color to pay button"
+            value={customizations.applyColorToPayButton}
+            onChange={handleChange}
+            name="applyColorToPayButton"
+            m="sm"
+          />
+        </div>
+        <div>
+          <Switch
+            defaultChecked
+            label="Show avatar"
+            onChange={handleChange}
+            m="sm"
+            name="avatar"
+            value={customizations.avatar}
+          />
+          <Switch
+            defaultChecked
+            label="Show share button"
+            onChange={handleChange}
+            m="sm"
+            name="shareButton"
+            value={customizations.shareButton}
+          />
+
+          <Switch
+            label="Show pay button"
+            onChange={handleChange}
+            m="sm"
+            name="payButton"
+            value={customizations.payButton}
+            defaultChecked
+          />
+        </div>
       </Group>
 
       <Flex justify="center" align="center">
-        <QrCard
-          data={data}
-          avatarColor={avatarColor}
-          avatarInitials={avatarInitials}
-        />
+        <QrCard data={data} customizations={customizations} />
       </Flex>
     </div>
   );
