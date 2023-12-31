@@ -24,7 +24,7 @@ function generateUpiUrl(data) {
   return url;
 }
 
-export default function QrCard({ data, customizations }) {
+export default function QrCard({ data, customizations, preview }) {
   const UpiUrl = generateUpiUrl(data);
 
   return (
@@ -59,6 +59,16 @@ export default function QrCard({ data, customizations }) {
                   ? customizations.primaryColor
                   : ""
               }
+              onClick={
+                !preview
+                  ? () =>
+                      navigator.share({
+                        url: UpiUrl,
+                        title: "Pay",
+                        text: `Pay ${data.name} using UPI!`,
+                      })
+                  : () => {}
+              }
             >
               <IconShare />
             </ActionIcon>
@@ -88,6 +98,7 @@ export default function QrCard({ data, customizations }) {
                   ? customizations.primaryColor
                   : ""
               }
+              onClick={!preview ? () => window.open(UpiUrl) : () => {}}
               fullWidth
             >
               Proceed to Pay
