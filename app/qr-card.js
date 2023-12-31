@@ -63,7 +63,7 @@ export default function QrCard({ data, customizations, preview }) {
                 !preview
                   ? () =>
                       navigator.share({
-                        url: UpiUrl,
+                        url: window.location.href,
                         title: "Pay",
                         text: `Pay ${data.name} using UPI!`,
                       })
