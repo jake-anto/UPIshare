@@ -80,25 +80,6 @@ export default function Home() {
     }
   };
 
-  const handleCustomizationChange = (e) => {
-    const { name, type } = e.target;
-
-    // Fix for Switch and Chip
-    const input = type === "checkbox" ? e.target.checked : e.target.value;
-
-    setCustomizations({
-      ...customizations,
-      [name]: input,
-    });
-  };
-
-  const handleColorChange = (color) => {
-    setCustomizations({
-      ...customizations,
-      primaryColor: color,
-    });
-  };
-
   const small_screen = useMediaQuery("(max-width: 640px)");
 
   return (
