@@ -14,6 +14,18 @@ import Form from "./form";
 import Header from "./header";
 import validate from "./validate";
 
+function computeAvatarInitials(name) {
+  let parts = name.split(" ");
+  if (parts.length === 1) {
+    return parts[0].slice(0, 1).toUpperCase();
+  } else {
+    return (
+      parts[0].slice(0, 1).toUpperCase() +
+      parts[parts.length - 1].slice(0, 1).toUpperCase()
+    );
+  }
+}
+
 export default function Home() {
   const [active, setActive] = useState(0);
   const [formData, setFormData] = useState({
@@ -27,6 +39,16 @@ export default function Home() {
     name: "",
     amount: "",
     note: "",
+  });
+  const [customizations, setCustomizations] = useState({
+    primaryColor: "#fa5252",
+    avatarInitials: computeAvatarInitials(formData.name),
+    shareButton: true,
+    payButton: true,
+    avatar: true,
+    applyColorToAvatar: true,
+    applyColorToShareButton: true,
+    applyColorToPayButton: true,
   });
 
   const nextStep = () =>
@@ -56,6 +78,25 @@ export default function Home() {
     if (Object.values(errors).every((error) => error === "")) {
       nextStep();
     }
+  };
+
+  const handleCustomizationChange = (e) => {
+    const { name, type } = e.target;
+
+    // Fix for Switch and Chip
+    const input = type === "checkbox" ? e.target.checked : e.target.value;
+
+    setCustomizations({
+      ...customizations,
+      [name]: input,
+    });
+  };
+
+  const handleColorChange = (color) => {
+    setCustomizations({
+      ...customizations,
+      primaryColor: color,
+    });
   };
 
   const small_screen = useMediaQuery("(max-width: 640px)");
@@ -117,7 +158,23 @@ export default function Home() {
                 </Flex>
               </>
             )}
-            {active === 1 && <Customize data={formData} />}
+            {active === 1 && (
+              <>
+                <Customize
+                  data={formData}
+                  customizations={customizations}
+                  setCustomizations={setCustomizations}
+                />
+                <Flex justify="center" align="center" mih="72">
+                  <Button
+                    rightSection={<IconChevronRight />}
+                    onClick={handleFormSubmit}
+                  >
+                    Share and Download
+                  </Button>
+                </Flex>
+              </>
+            )}
           </Container>
         </AppShell.Main>
       </AppShell>

@@ -8,30 +8,7 @@ import {
 import { useState } from "react";
 import QrCard from "./qr-card";
 
-function computeAvatarInitials(name) {
-  let parts = name.split(" ");
-  if (parts.length === 1) {
-    return parts[0].slice(0, 1).toUpperCase();
-  } else {
-    return (
-      parts[0].slice(0, 1).toUpperCase() +
-      parts[parts.length - 1].slice(0, 1).toUpperCase()
-    );
-  }
-}
-
-export default function Customize({ data }) {
-  const [customizations, setCustomizations] = useState({
-    primaryColor: "#fa5252",
-    avatarInitials: computeAvatarInitials(data.name),
-    shareButton: true,
-    payButton: true,
-    avatar: true,
-    applyColorToAvatar: true,
-    applyColorToShareButton: true,
-    applyColorToPayButton: true,
-  });
-
+export default function Customize({ data, customizations, setCustomizations }) {
   const handleChange = (e) => {
     const { name, type } = e.target;
 
