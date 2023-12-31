@@ -120,7 +120,7 @@ export default function Customize({ data, customizations, setCustomizations }) {
       </Group>
 
       <Flex justify="center" align="center">
-        <QrCard data={data} customizations={customizations} />
+        <QrCard data={data} customizations={customizations} preview={true} />
       </Flex>
     </div>
   );

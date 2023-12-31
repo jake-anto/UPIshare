@@ -90,7 +90,7 @@ export default function Share({ data, customizations }) {
           />
         </Flex>
         <div>
-          <QrCard data={data} customizations={customizations} preview={true} />
+          <QrCard data={data} customizations={customizations} preview={false} />
         </div>
       </Flex>
     </>
