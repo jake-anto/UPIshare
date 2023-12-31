@@ -2,8 +2,25 @@ import { Button, Flex, NumberInput, TextInput } from "@mantine/core";
 import { IconChevronRight, IconCurrencyRupee } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 
-export default function Form({ formData, handleChange, handleNumberInputChange, errors }) {
+export default function Form({
+  data,
+  setData,
+  errors,
+}) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
 
+  const handleNumberInputChange = (name, value) => {
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
   return (
     <div>
       <TextInput
@@ -13,7 +30,7 @@ export default function Form({ formData, handleChange, handleNumberInputChange, 
         placeholder="sample@upi"
         size="md"
         mb="sm"
-        value={formData.id}
+        value={data.id}
         error={errors.id}
         onChange={handleChange}
         name="id"
@@ -24,7 +41,7 @@ export default function Form({ formData, handleChange, handleNumberInputChange, 
         description="Enter the payee's name"
         placeholder="Bob"
         size="md"
-        value={formData.name}
+        value={data.name}
         mb="sm"
         error={errors.name}
         onChange={handleChange}
@@ -44,7 +61,7 @@ export default function Form({ formData, handleChange, handleNumberInputChange, 
         thousandsGroupStyle="lakh"
         thousandSeparator=","
         leftSection={<IconCurrencyRupee />}
-        value={formData.amount}
+        value={data.amount}
         error={errors.amount}
         onChange={(value) => handleNumberInputChange("amount", value)}
         name="amount"
@@ -55,7 +72,7 @@ export default function Form({ formData, handleChange, handleNumberInputChange, 
         placeholder="Dinner at Joe's"
         size="md"
         mb="sm"
-        value={formData.note}
+        value={data.note}
         error={errors.note}
         onChange={handleChange}
         name="note"
