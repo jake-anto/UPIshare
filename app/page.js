@@ -13,6 +13,7 @@ import Customize from "./customize";
 import Form from "./form";
 import Header from "./header";
 import validate from "./validate";
+import Share from "./share";
 
 function computeAvatarInitials(name) {
   let parts = name.split(" ");
@@ -55,21 +56,6 @@ export default function Home() {
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleFormNumberInputChange = (name, value) => {
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
 
   const handleFormSubmit = () => {
     let errors = validate(formData);
@@ -123,12 +109,7 @@ export default function Home() {
           <Container size="xs" padding="md">
             {active === 0 && (
               <>
-                <Form
-                  formData={formData}
-                  handleChange={handleFormChange}
-                  handleNumberInputChange={handleFormNumberInputChange}
-                  errors={errors}
-                />
+                <Form data={formData} setData={setFormData} errors={errors} />
                 <Flex justify="center" align="center" mih="72">
                   <Button
                     rightSection={<IconChevronRight />}
@@ -154,6 +135,11 @@ export default function Home() {
                     Share and Download
                   </Button>
                 </Flex>
+              </>
+            )}
+            {active === 2 && (
+              <>
+                <Share data={formData} customizations={customizations} />
               </>
             )}
           </Container>
