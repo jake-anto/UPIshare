@@ -35,7 +35,11 @@ export default function Pay() {
         </AppShell.Header>
         <AppShell.Main>
           <Flex justify="center" align="center" gap="md">
-            <QrCard data={data} customizations={customizations} />
+            <QrCard
+              data={data}
+              customizations={customizations}
+              preview={false}
+            />
           </Flex>
         </AppShell.Main>
       </AppShell>
