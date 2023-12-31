@@ -42,8 +42,8 @@ export default function QrCard({ data, customizations }) {
           </Avatar>
         )}
 
-        <div style={{ flex: 1 }} >
-          <Text size="sm" fw={500} >
+        <div style={{ flex: 1 }}>
+          <Text size="sm" fw={500}>
             {data.name}
           </Text>
           <Text c="dimmed" size="xs">
@@ -76,7 +76,7 @@ export default function QrCard({ data, customizations }) {
         />
       </Flex>
       <Text align="center" size="xs">
-        Scan to pay
+        Scan or click to pay
       </Text>
       {customizations.payButton && (
         <>
