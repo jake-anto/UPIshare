@@ -1,11 +1,4 @@
-import {
-  ColorInput,
-  Flex,
-  Group,
-  Switch,
-  TextInput,
-} from "@mantine/core";
-import { useState } from "react";
+import { ColorInput, Flex, Group, Switch, TextInput } from "@mantine/core";
 import QrCard from "./qr-card";
 
 export default function Customize({ data, customizations, setCustomizations }) {
