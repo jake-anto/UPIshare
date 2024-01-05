@@ -54,7 +54,7 @@ export default function Form({
         size="md"
         mb="sm"
         min={1}
-        max={99999}
+        max={100000}
         allowNegative={false}
         clampBehavior="strict"
         decimalScale={2}
