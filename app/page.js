@@ -43,7 +43,7 @@ export default function Home() {
   });
   const [customizations, setCustomizations] = useState({
     primaryColor: "#fa5252",
-    avatarInitials: computeAvatarInitials(formData.name),
+    avatarInitials: "",
     shareButton: true,
     payButton: true,
     avatar: true,
@@ -60,6 +60,8 @@ export default function Home() {
   const handleFormSubmit = () => {
     let errors = validate(formData);
     setErrors(errors);
+
+    customizations.avatarInitials = computeAvatarInitials(formData.name);
 
     if (Object.values(errors).every((error) => error === "")) {
       nextStep();
