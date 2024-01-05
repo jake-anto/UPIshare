@@ -32,6 +32,7 @@ export default function QrCard({ data, customizations, preview }) {
       <Group>
         {customizations.avatar && (
           <Avatar
+            autoContrast
             color={
               customizations.applyColorToAvatar
                 ? customizations.primaryColor
@@ -92,6 +93,7 @@ export default function QrCard({ data, customizations, preview }) {
         <>
           <Flex align="center" m="sm">
             <Button
+              autoContrast
               leftSection={<IconCurrencyRupee />}
               color={
                 customizations.applyColorToPayButton
