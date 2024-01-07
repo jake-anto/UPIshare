@@ -3,6 +3,7 @@
 import { AppShell, Button, Container, Flex, Stepper } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
 import {
+  IconChevronLeft,
   IconChevronRight,
   IconForms,
   IconShare3,
@@ -131,6 +132,14 @@ export default function Home() {
                 />
                 <Flex justify="center" align="center" mih="72">
                   <Button
+                    variant="outline"
+                    onClick={prevStep}
+                    leftSection={<IconChevronLeft />}
+                    mr="md"
+                  >
+                    Edit info
+                  </Button>
+                  <Button
                     rightSection={<IconChevronRight />}
                     onClick={handleFormSubmit}
                   >
@@ -142,6 +151,16 @@ export default function Home() {
             {active === 2 && (
               <>
                 <Share data={formData} customizations={customizations} />
+                <Flex justify="center" align="center" mih="72">
+                  <Button
+                    variant="outline"
+                    onClick={prevStep}
+                    leftSection={<IconChevronLeft />}
+                    mr="md"
+                  >
+                    Customize
+                  </Button>
+                </Flex>
               </>
             )}
           </Container>
