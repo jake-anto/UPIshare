@@ -54,7 +54,8 @@ export default function QrCard({ data, customizations, preview }) {
         {customizations.shareButton && (
           <>
             <ActionIcon
-              variant="transparent"
+              variant="subtle"
+              radius="md"
               color={
                 customizations.applyColorToShareButton
                   ? customizations.primaryColor
