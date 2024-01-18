@@ -3,8 +3,12 @@
 import { AppShell, Flex } from "@mantine/core";
 import Header from "../header";
 import QrCard from "../qr-card";
+import Disclaimer from "../disclaimer";
+import { useDisclosure } from "@mantine/hooks";
 
 export default function Pay() {
+  const [disclaimer, { open, close }] = useDisclosure(true);
+
   // Node.js fix
   if (typeof document != "undefined") {
     const params = new URLSearchParams(document.location.search);
@@ -16,6 +20,7 @@ export default function Pay() {
         note: params.get("note"),
       };
     })();
+
     const customizations = (function () {
       return {
         primaryColor: params.get("primaryColor"),
@@ -28,6 +33,7 @@ export default function Pay() {
         applyColorToPayButton: params.get("applyColorToPayButton"),
       };
     })();
+
     return (
       <>
         <AppShell header={{ height: 72 }} padding="md">
@@ -44,6 +50,7 @@ export default function Pay() {
             </Flex>
           </AppShell.Main>
         </AppShell>
+        <Disclaimer disclaimer={disclaimer} close={close} />
       </>
     );
   }
