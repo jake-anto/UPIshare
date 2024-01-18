@@ -1,7 +1,7 @@
 "use client";
 
 import { AppShell, Button, Container, Flex, Stepper } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { useDisclosure, useMediaQuery } from "@mantine/hooks";
 import {
   IconChevronLeft,
   IconChevronRight,
@@ -13,8 +13,9 @@ import { useState } from "react";
 import Customize from "./customize";
 import Form from "./form";
 import Header from "./header";
-import validate from "./validate";
 import Share from "./share";
+import validate from "./validate";
+import Disclaimer from "./disclaimer";
 
 function computeAvatarInitials(name) {
   let parts = name.split(" ");
@@ -30,6 +31,7 @@ function computeAvatarInitials(name) {
 
 export default function Home() {
   const [active, setActive] = useState(0);
+  const [disclaimer, { open, close }] = useDisclosure(true);
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -73,6 +75,7 @@ export default function Home() {
 
   return (
     <>
+      <Disclaimer disclaimer={disclaimer} close={close} />
       <AppShell header={{ height: 72 }} padding="md">
         <AppShell.Header>
           <Header />
