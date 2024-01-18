@@ -131,7 +131,7 @@ export default function Share({ data, customizations }) {
               <ActionIcon
                 variant="light"
                 component="a"
-                href={`sms:?body=${shareText} ${link}`}
+                href={`https://wa.me/?text=${shareText} ${link}`}
               >
                 <IconBrandWhatsapp />
               </ActionIcon>
