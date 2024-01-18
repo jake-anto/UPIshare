@@ -1,10 +1,11 @@
 "use client";
 
-import { AppShell, Flex } from "@mantine/core";
+import { AppShell, Button, Flex } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { IconPlus } from "@tabler/icons-react";
+import Disclaimer from "../disclaimer";
 import Header from "../header";
 import QrCard from "../qr-card";
-import Disclaimer from "../disclaimer";
-import { useDisclosure } from "@mantine/hooks";
 
 export default function Pay() {
   const [disclaimer, { open, close }] = useDisclosure(true);
@@ -41,12 +42,21 @@ export default function Pay() {
             <Header />
           </AppShell.Header>
           <AppShell.Main>
-            <Flex justify="center" align="center" gap="md">
+            <Flex justify="center" align="center" gap="md" direction="column">
               <QrCard
                 data={data}
                 customizations={customizations}
                 preview={false}
               />
+              <Button
+                variant="light"
+                size="xs"
+                leftSection={<IconPlus />}
+                component="a"
+                href="/"
+              >
+                Create
+              </Button>
             </Flex>
           </AppShell.Main>
         </AppShell>
