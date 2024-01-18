@@ -75,7 +75,6 @@ export default function Home() {
 
   return (
     <>
-      <Disclaimer disclaimer={disclaimer} close={close} />
       <AppShell header={{ height: 72 }} padding="md">
         <AppShell.Header>
           <Header />
@@ -169,6 +168,7 @@ export default function Home() {
           </Container>
         </AppShell.Main>
       </AppShell>
+      <Disclaimer disclaimer={disclaimer} close={close} />
     </>
   );
 }
