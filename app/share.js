@@ -121,7 +121,6 @@ export default function Share({ data, customizations }) {
             <Tooltip label="Share on SMS" withArrow>
               <ActionIcon
                 variant="light"
-                component="a"
                 href={`sms:?body=${shareText} ${link}`}
               >
                 <IconMessage />
@@ -130,7 +129,6 @@ export default function Share({ data, customizations }) {
             <Tooltip label="Share on WhatsApp" withArrow>
               <ActionIcon
                 variant="light"
-                component="a"
                 href={`https://wa.me/?text=${shareText} ${link}`}
               >
                 <IconBrandWhatsapp />
@@ -139,7 +137,6 @@ export default function Share({ data, customizations }) {
             <Tooltip label="Share on Telegram" withArrow>
               <ActionIcon
                 variant="light"
-                component="a"
                 href={`https://t.me/share/url?url=${link}&text=${shareText}`}
               >
                 <IconBrandTelegram />
@@ -150,7 +147,6 @@ export default function Share({ data, customizations }) {
             <Tooltip label="Share on Email" withArrow>
               <ActionIcon
                 variant="light"
-                component="a"
                 // slice(0, -1) to remove ":" from shareText
                 href={`mailto:?subject=${shareText.slice(
                   0,
@@ -163,7 +159,6 @@ export default function Share({ data, customizations }) {
             <Tooltip label="Share on Reddit" withArrow>
               <ActionIcon
                 variant="light"
-                component="a"
                 href={`https://www.reddit.com/submit?url=${link}&title=${shareText.slice(
                   0,
                   -1
