@@ -44,7 +44,7 @@ export default function Header() {
               textAlign: "center",
             }}
           >
-            UPI QR Code Generator
+            UPIshare
           </Text>
         </Flex>
       </Grid.Col>
