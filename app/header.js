@@ -43,6 +43,8 @@ export default function Header() {
             style={{
               textAlign: "center",
             }}
+            component="a"
+            href="/"
           >
             UPIshare
           </Text>
