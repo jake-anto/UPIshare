@@ -39,7 +39,7 @@ export default function Hero() {
               simple!
             </Text>
             <Group mt={30}>
-              <Button radius="xl" size="md" rightSection={<IconArrowRight />}>
+              <Button component="a" href="/" radius="xl" size="md" rightSection={<IconArrowRight />}>
                 Get started
               </Button>
               <Button variant="default" radius="xl" size="md">
