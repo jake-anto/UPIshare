@@ -57,6 +57,7 @@ export default function Disclaimer({ disclaimer, close }) {
       understood this disclaimer and that you agree to abide by it. If you do
       not agree, please do not use this app.
       <div style={{ textAlign: "right" }}>
+        <Button component="a" href="/about" variant="light">Learn more</Button>
         <Button onClick={close} m="sm">
           I Agree
         </Button>
