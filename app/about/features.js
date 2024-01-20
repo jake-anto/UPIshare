@@ -5,7 +5,6 @@ import {
   IconDownloadOff,
   IconQrcode,
   IconRocket,
-  IconShare,
   IconSpyOff,
 } from "@tabler/icons-react";
 
