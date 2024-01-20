@@ -4,6 +4,7 @@ import { AppShell } from "@mantine/core";
 import Header from "../header";
 import Faq from "./faq";
 import Hero from "./hero";
+import Features from "./features";
 
 export default function About() {
   return (
@@ -13,6 +14,7 @@ export default function About() {
       </AppShell.Header>
       <AppShell.Main bg="dark.9">
         <Hero />
+        <Features />
         <Faq />
       </AppShell.Main>
     </AppShell>
