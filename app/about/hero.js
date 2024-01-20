@@ -1,4 +1,4 @@
-import { Container, Flex, Title, Text, Button, Group } from "@mantine/core";
+import { Container, Flex, Title, Text, Button, Group, Box } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
 import QrCard from "../qr-card";
 
@@ -21,7 +21,8 @@ export default function Hero() {
     };
   
     return (
-      <Container size="md">
+      <Box bg="dark.9">
+      <Container size="md" bg="dark.9">
         <Flex
           gap="xl"
           justify="center"
@@ -29,7 +30,7 @@ export default function Hero() {
           direction={{ base: "column", sm: "row" }}
           wrap="nowrap"
         >
-          <div>
+          <Box m="sm">
             <Title>
               Create beautiful and secure UPI payment links with UPIshare
             </Title>
@@ -46,15 +47,15 @@ export default function Hero() {
                 Know more
               </Button>
             </Group>
-          </div>
-          <div>
+          </Box>
+          <Box m="md">
             <QrCard
               data={data}
               customizations={customizations}
               preview={true}
             ></QrCard>
-          </div>
+          </Box>
         </Flex>
-      </Container>
+      </Container></Box>
     );
   }
