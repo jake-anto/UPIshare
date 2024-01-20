@@ -1,4 +1,11 @@
-import { Container, Title, Text, ThemeIcon, SimpleGrid, Box } from "@mantine/core";
+import {
+  Box,
+  Container,
+  SimpleGrid,
+  Text,
+  ThemeIcon,
+  Title,
+} from "@mantine/core";
 import {
   IconAdCircleOff,
   IconBrandOpenSource,
@@ -44,7 +51,7 @@ const featuresList = [
     title: "No installation required",
     description:
       "UPIshare is a web app. You can use it on any device without installing anything.",
-  }
+  },
 ];
 
 function Feature({ icon, title, description }) {
@@ -64,20 +71,20 @@ function Feature({ icon, title, description }) {
 }
 
 export default function Features() {
-    const featuresGrid = featuresList.map((item) => (
-      <Feature
-        key={item.title}
-        icon={<item.icon />}
-        title={item.title}
-        description={item.description}
-      />
-    ));
+  const featuresGrid = featuresList.map((item) => (
+    <Feature
+      key={item.title}
+      icon={<item.icon />}
+      title={item.title}
+      description={item.description}
+    />
+  ));
   return (
-    <Container size="md">
-      <Title ta="center" m="xl">Features</Title>
-      <SimpleGrid cols={{ base: 1, sm: 3}}>
-        {featuresGrid}
-      </SimpleGrid>
+    <Container size="md" id="features">
+      <Title ta="center" m="xl">
+        Features
+      </Title>
+      <SimpleGrid cols={{ base: 1, sm: 3 }}>{featuresGrid}</SimpleGrid>
     </Container>
   );
 }

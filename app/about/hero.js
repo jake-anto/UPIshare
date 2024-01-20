@@ -42,7 +42,7 @@ export default function Hero() {
               <Button component="a" href="/" radius="xl" size="md" rightSection={<IconArrowRight />}>
                 Get started
               </Button>
-              <Button variant="default" radius="xl" size="md">
+              <Button component="a" href="#features" variant="default" radius="xl" size="md">
                 Know more
               </Button>
             </Group>
