@@ -1,14 +1,43 @@
-import { ActionIcon, Button, Flex, Grid, Text } from "@mantine/core";
+import {
+  ActionIcon,
+  Button,
+  Flex,
+  Grid,
+  Text,
+  useComputedColorScheme,
+  useMantineColorScheme,
+} from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { IconBrandGithub, IconHeart } from "@tabler/icons-react";
+import { IconBrandGithub, IconHeart, IconSunMoon } from "@tabler/icons-react";
 import Logo from "./logo";
+
+function ColorSchemeSwitcher() {
+  const { setColorScheme } = useMantineColorScheme({ keepTransitions: true });
+  const computedColorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
+
+  return (
+    <ActionIcon
+      aria-label="Toggle color scheme"
+      variant="default"
+      size="lg"
+      mx="sm"
+      onClick={() =>
+        setColorScheme(computedColorScheme === "light" ? "dark" : "light")
+      }
+    >
+      <IconSunMoon />
+    </ActionIcon>
+  );
+}
 
 export default function Header() {
   const isMobile = useMediaQuery("(min-width: 640px)");
   return (
     <Grid>
       <Grid.Col span={isMobile ? 2 : 3}>
-        <Flex justify="flex-start" align="center" mih="72">
+        <Flex justify="flex-start" align="center" mih="72" gap="lg">
           {isMobile ? (
             <Button
               variant="light"
@@ -43,6 +72,7 @@ export default function Header() {
       </Grid.Col>
       <Grid.Col span={isMobile ? 2 : 3}>
         <Flex justify="flex-end" align="center" mih="72">
+          <ColorSchemeSwitcher />
           {isMobile ? (
             <>
               <Button

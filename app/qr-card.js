@@ -6,6 +6,7 @@ import {
   Group,
   Paper,
   Text,
+  useComputedColorScheme,
 } from "@mantine/core";
 import { IconCurrencyRupee, IconShare } from "@tabler/icons-react";
 import QRCode from "react-fancy-qrcode";
@@ -26,6 +27,9 @@ function generateUpiUrl(data) {
 
 export default function QrCard({ data, customizations, preview }) {
   const UpiUrl = generateUpiUrl(data);
+  const computedColorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
 
   return (
     <Paper shadow="md" radius="xl" p="xl" maw="400px">
@@ -89,8 +93,8 @@ export default function QrCard({ data, customizations, preview }) {
         <QRCode
           value={UpiUrl}
           size={175}
-          color="#ffffff"
-          backgroundColor="#242424"
+          color={computedColorScheme === "dark" ? "#fff" : "#242424"}
+          backgroundColor={computedColorScheme === "dark" ? "#242424" : "#fff"}
           dotRadius="50%"
           positionRadius={["5%", "1%"]}
         />

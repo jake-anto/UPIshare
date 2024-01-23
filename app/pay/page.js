@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, Button, Flex } from "@mantine/core";
+import { AppShell, Button, Flex, useComputedColorScheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconPlus } from "@tabler/icons-react";
 import Disclaimer from "../disclaimer";
@@ -9,6 +9,10 @@ import QrCard from "../qr-card";
 
 export default function Pay() {
   const [disclaimer, { open, close }] = useDisclosure(true);
+  const computedColorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
+  const secondaryColor = computedColorScheme === "dark" ? "dark.9" : "gray.2";
 
   // Node.js fix
   if (typeof document != "undefined") {
@@ -41,7 +45,7 @@ export default function Pay() {
           <AppShell.Header>
             <Header />
           </AppShell.Header>
-          <AppShell.Main>
+          <AppShell.Main bg={secondaryColor}>
             <Flex justify="center" align="center" gap="md" direction="column">
               <QrCard
                 data={data}

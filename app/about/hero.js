@@ -11,7 +11,7 @@ import { IconArrowRight } from "@tabler/icons-react";
 import Logo from "../logo";
 import QrCard from "../qr-card";
 
-export default function Hero() {
+export default function Hero({ secondaryColor }) {
   const data = {
     id: "johndoe@upi",
     name: "John Doe",
@@ -30,8 +30,8 @@ export default function Hero() {
   };
 
   return (
-    <Box bg="dark.9">
-      <Container size="md" bg="dark.9">
+    <Box bg={secondaryColor}>
+      <Container size="md">
         <Flex
           gap="xl"
           justify="center"

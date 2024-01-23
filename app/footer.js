@@ -1,9 +1,9 @@
 import { Anchor, Box, Container, Text } from "@mantine/core";
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ secondaryColor }) {
   return (
-    <Box bg="dark.9" mt="xl">
+    <Box bg={secondaryColor} mt="xl">
       <Container size="md" p="md">
         <Text ta="center">
           Made by{" "}
