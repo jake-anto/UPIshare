@@ -47,7 +47,15 @@ export default function QrCard({ data, customizations, preview }) {
           <Text size="sm" fw={500}>
             {data.name}
           </Text>
-          <Text c="dimmed" size="xs">
+          <Text
+            c="dimmed"
+            size="xs"
+            id="upiId"
+            onClick={
+              !preview ? () => navigator.clipboard.writeText(data.id) : () => {}
+            }
+            style={{ cursor: "pointer" }}
+          >
             {data.id}
           </Text>
         </div>
