@@ -1,6 +1,7 @@
-import { Button, ActionIcon, Flex, Text, Grid } from "@mantine/core";
-import { IconHeart, IconBrandGithub } from "@tabler/icons-react";
+import { ActionIcon, Button, Flex, Grid, Text } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
+import { IconBrandGithub, IconHeart } from "@tabler/icons-react";
+import Logo from "./logo";
 
 export default function Header() {
   const isMobile = useMediaQuery("(min-width: 640px)");
@@ -35,18 +36,8 @@ export default function Header() {
       </Grid.Col>
       <Grid.Col span={isMobile ? 8 : 6}>
         <Flex justify="center" align="center" mih="72">
-          <Text
-            size="xl"
-            fw={900}
-            variant="gradient"
-            gradient={{ from: "blue", to: "cyan", deg: 90 }}
-            style={{
-              textAlign: "center",
-            }}
-            component="a"
-            href="/"
-          >
-            UPIshare
+          <Text size="xl" component="a" href="/">
+            <Logo />
           </Text>
         </Flex>
       </Grid.Col>
