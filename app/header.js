@@ -76,6 +76,8 @@ export default function Header() {
           {isMobile ? (
             <>
               <Button
+                component="a"
+                href="https://github.com/jake-anto/UPIshare"
                 variant="subtle"
                 size="sm"
                 aria-label="Source Code"
