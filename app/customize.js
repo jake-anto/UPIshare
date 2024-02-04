@@ -22,9 +22,8 @@ export default function Customize({ data, customizations, setCustomizations }) {
   };
 
   return (
-    <div>
-      <h1>Customize</h1>
-      <Group m="sm" preventGrowOverflow={false} grow>
+    <>
+      <Group m="sm" grow>
         <ColorInput
           format="hex"
           label="Primary color"
@@ -115,6 +114,6 @@ export default function Customize({ data, customizations, setCustomizations }) {
       <Flex justify="center" align="center">
         <QrCard data={data} customizations={customizations} preview={true} />
       </Flex>
-    </div>
+    </>
   );
 }
