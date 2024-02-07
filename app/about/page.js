@@ -1,6 +1,6 @@
 "use client";
 
-import { AppShell, useComputedColorScheme } from "@mantine/core";
+import { AppShell } from "@mantine/core";
 import Footer from "../footer";
 import Header from "../header";
 import Faq from "./faq";
@@ -8,10 +8,12 @@ import Features from "./features";
 import Hero from "./hero";
 
 export default function About() {
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true,
-  });
-  const secondaryColor = computedColorScheme === "dark" ? "dark.9" : "gray.2";
+  // doesn't work in SSR
+  function getColorScheme() {
+    return document.documentElement.getAttribute("data-mantine-color-scheme");
+  }
+
+  const secondaryColor = getColorScheme() === "dark" ? "dark.9" : "gray.2";
 
   return (
     <AppShell header={{ height: 72 }}>
