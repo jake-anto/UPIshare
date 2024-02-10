@@ -10,7 +10,11 @@ import Hero from "./hero";
 export default function About() {
   // doesn't work in SSR
   function getColorScheme() {
-    return document.documentElement.getAttribute("data-mantine-color-scheme");
+    // Node.js fix
+    // If you know how to fix this, please open a pull request
+    if (typeof document != "undefined") {
+      return document.documentElement.getAttribute("data-mantine-color-scheme");
+    }
   }
 
   const secondaryColor = getColorScheme() === "dark" ? "dark.9" : "gray.2";
