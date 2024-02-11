@@ -1,0 +1,5 @@
+.qrCode {
+  @mixin dark {
+    filter: invert(100%);
+  }
+}

@@ -1,15 +1,16 @@
 import {
   ActionIcon,
   Avatar,
+  Box,
   Button,
   Flex,
   Group,
   Paper,
   Text,
-  useComputedColorScheme,
 } from "@mantine/core";
 import { IconCurrencyRupee, IconShare } from "@tabler/icons-react";
 import QRCode from "react-fancy-qrcode";
+import classes from "./qr-card.module.css";
 
 function generateUpiUrl(data) {
   let url = `upi://pay?pa=${data.id}&pn=${data.name}`;
@@ -27,9 +28,6 @@ function generateUpiUrl(data) {
 
 export default function QrCard({ data, customizations, preview }) {
   const UpiUrl = generateUpiUrl(data);
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true,
-  });
 
   return (
     <Paper shadow="md" radius="xl" p="xl" maw="400px">
@@ -90,14 +88,16 @@ export default function QrCard({ data, customizations, preview }) {
         )}
       </Group>
       <Flex justify="center" align="center" m="sm">
-        <QRCode
-          value={UpiUrl}
-          size={175}
-          color={computedColorScheme === "dark" ? "#fff" : "#242424"}
-          backgroundColor={computedColorScheme === "dark" ? "#242424" : "#fff"}
-          dotRadius="50%"
-          positionRadius={["5%", "1%"]}
-        />
+        <Box className={classes.qrCode}>
+          <QRCode
+            value={UpiUrl}
+            size={175}
+            color="black"
+            backgroundColor="#00000000" // transparent
+            dotRadius="50%"
+            positionRadius={["5%", "1%"]}
+          />
+        </Box>
       </Flex>
       <Text align="center" size="xs">
         Scan or click to pay
