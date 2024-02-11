@@ -10,6 +10,7 @@ import {
 import { IconArrowRight } from "@tabler/icons-react";
 import Logo from "../logo";
 import QrCard from "../qr-card";
+import classes from "./hero.module.css";
 
 export default function Hero({ secondaryColor }) {
   const data = {
@@ -30,7 +31,7 @@ export default function Hero({ secondaryColor }) {
   };
 
   return (
-    <Box bg={secondaryColor}>
+    <Box className={classes.root}>
       <Container size="md">
         <Flex
           gap="xl"
