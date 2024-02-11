@@ -8,9 +8,9 @@ import {
   Title,
 } from "@mantine/core";
 import { IconArrowRight } from "@tabler/icons-react";
+import classes from "../colors.module.css";
 import Logo from "../logo";
 import QrCard from "../qr-card";
-import classes from "./hero.module.css";
 
 export default function Hero({ secondaryColor }) {
   const data = {
@@ -31,7 +31,7 @@ export default function Hero({ secondaryColor }) {
   };
 
   return (
-    <Box className={classes.root}>
+    <Box className={secondaryColor}>
       <Container size="md">
         <Flex
           gap="xl"

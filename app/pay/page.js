@@ -3,18 +3,16 @@
 import { AppShell, Button, Flex, useComputedColorScheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconPlus } from "@tabler/icons-react";
+import classes from "../colors.module.css";
 import Disclaimer from "../disclaimer";
 import Header from "../header";
 import QrCard from "../qr-card";
 
 export default function Pay() {
   const [disclaimer, { open, close }] = useDisclosure(true);
-  const computedColorScheme = useComputedColorScheme("light", {
-    getInitialValueInEffect: true,
-  });
-  const secondaryColor = computedColorScheme === "dark" ? "dark.9" : "gray.2";
 
   // Node.js fix
+  // If you know how to fix this, please open a pull request
   if (typeof document != "undefined") {
     const params = new URLSearchParams(document.location.search);
     const data = (function () {
@@ -45,7 +43,7 @@ export default function Pay() {
           <AppShell.Header>
             <Header />
           </AppShell.Header>
-          <AppShell.Main bg={secondaryColor}>
+          <AppShell.Main className={classes.accent}>
             <Flex justify="center" align="center" gap="md" direction="column">
               <QrCard
                 data={data}

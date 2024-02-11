@@ -1,4 +1,4 @@
-.root {
+.accent {
   @mixin light {
     background-color: var(--mantine-color-gray-2);
   }
